@@ -1,8 +1,16 @@
-def find_common_participants(group1, group2, delimiter=","):
+def find_item_index(items, target):
+    for index, item in enumerate(items):
+        if item == target:
+            return index
+    return None
 
-    set1 = set(participant.strip() for participant in group1.split(delimiter))
-    set2 = set(participant.strip() for participant in group2.split(delimiter))
+items_list = ['яблоко', 'банан', 'апельсин', 'груша', 'киви', 'банан']
 
-    common = set1.intersection(set2)
+search_items = ['банан', 'груша', 'персик']
 
-    return sorted(common)
+for find_item in search_items:
+    index_item = find_item_index(items_list, find_item)
+    if index_item is not None:
+        print(f"Первое вхождение товара '{find_item}' имеет индекс {index_item}.")
+    else:
+        print(f"Товар '{find_item}' не найден в списке.")
