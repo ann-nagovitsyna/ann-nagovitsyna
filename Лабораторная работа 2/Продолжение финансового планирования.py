@@ -11,10 +11,8 @@ for month in range(1, months + 1):
     deficit = current_spend - salary
     if deficit > 0:
         money_capital += deficit
-    # Увеличиваем расходы на следующий месяц
     current_spend *= (1 + increase)
 
-# Округляем до ближайшего целого числа
 money_capital = round(money_capital)
 
 print(f"Подушка безопасности, чтобы протянуть {months} месяцев без долгов:", money_capital)
