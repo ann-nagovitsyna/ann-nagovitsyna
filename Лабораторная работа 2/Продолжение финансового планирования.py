@@ -1,17 +1,20 @@
-def find_item_index(items, target):
+salary = 5000       # Ежемесячная зарплата
+spend = 6000        # Траты за первый месяц
+months = 10         # Количество месяцев, которое планируется протянуть без долгов
+increase = 0.03     # Ежемесячный рост цен
 
-    for index, item in enumerate(items):
-        if item == target:
-            return index
-    return None
+money_capital = 0   # Необходимая подушка безопасности
 
-items_list = ['яблоко', 'банан', 'апельсин', 'груша', 'киви', 'банан']
+current_spend = spend
 
-search_items = ['банан', 'груша', 'персик']
+for month in range(1, months + 1):
+    deficit = current_spend - salary
+    if deficit > 0:
+        money_capital += deficit
+    # Увеличиваем расходы на следующий месяц
+    current_spend *= (1 + increase)
 
-for find_item in search_items:
-    index_item = find_item_index(items_list, find_item)  # Вызов функции для получения индекса товара
-    if index_item is not None:
-        print(f"Первое вхождение товара '{find_item}' имеет индекс {index_item}.")
-    else:
-        print(f"Товар '{find_item}' не найден в списке.")
+# Округляем до ближайшего целого числа
+money_capital = round(money_capital)
+
+print(f"Подушка безопасности, чтобы протянуть {months} месяцев без долгов:", money_capital)
